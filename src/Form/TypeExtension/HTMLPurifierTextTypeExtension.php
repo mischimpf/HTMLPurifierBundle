@@ -45,10 +45,6 @@ class HTMLPurifierTextTypeExtension extends AbstractTypeExtension
 
                 throw new InvalidOptionsException(sprintf('The profile "%s" is not registered.', $profile));
             })
-            ->setNormalizer('trim', function (Options $options, $trim) {
-                // trim is done in the HTMLPurifierListener
-                return $options['purify_html'] ? false : $trim;
-            })
         ;
     }
 
