@@ -25,7 +25,11 @@ class HTMLPurifierListener implements EventSubscriberInterface
             return; // because we don't want to handle it here
         }
 
-        if (0 === strlen($submittedData = trim((string) $data))) {
+        $data = $event->getForm()->getConfig()->getOption('trim')
+            ? trim($data)
+            : $data;
+
+        if (0 === strlen($submittedData = $data)) {
             if ($submittedData !== $data) {
                 $event->setData($submittedData);
             }
